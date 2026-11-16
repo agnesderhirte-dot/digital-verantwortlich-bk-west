@@ -1,0 +1,14 @@
+{
+  "name": "digital-verantwortlich-bk-west",
+  "private": true,
+  "type": "module",
+  "engines": {
+    "node": ">=22"
+  },
+  "scripts": {
+    "dev": "node server.mjs",
+    "start": "node server.mjs",
+    "test": "node --test tests/*.test.mjs",
+    "build:html": "node build-independent.mjs"
+  }
+}
