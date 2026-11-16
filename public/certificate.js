@@ -40,10 +40,12 @@ export async function createCertificate(input,resources){
  text('Persönlich bestätigt am '+formatDate(record.issuedAt),45,652,8,muted);
  if(record.signature.mode==='drawn'){for(const stroke of record.signature.strokes){for(let i=1;i<stroke.length;i++)page.drawLine({start:{x:45+stroke[i-1][0]*220,y:H-672-stroke[i-1][1]*57},end:{x:45+stroke[i][0]*220,y:H-672-stroke[i][1]*57},thickness:1.1,color:navy});}}else wrap(record.signedName,45,685,230,9,navy,12);
  text(record.signature.mode==='drawn'?'Schülerunterschrift':'Persönliche Namensbestätigung',45,738,7,muted);
- if(assets.teacher){const signature=await pdf.embedPng(assets.teacher);page.drawImage(signature,{x:335,y:H-704,width:145,height:52});}
+ if(assets.teacher){const signature=await pdf.embedPng(assets.teacher);page.drawImage(signature,{x:304,y:H-710,width:128,height:58.68});}
  text('OStR Matthias Albrecht',315,708,10);text('Digitalisierungsbeauftragter',315,724,8);text(formatDate(record.issuedAt),315,738,8,muted);
  rect(45,758,505,1,line);text('Nachweis-ID: '+record.id,45,768,7.1);text('Lernfassung: '+VERSION+' | Regeln: '+record.rulesVersion,45,782,6.8,muted);
  wrap('Selbstlern-Nachweis mit selbst angegebenem Namen; keine Identitätsprüfung oder kryptografische Signatur. Die Bestätigung enthält weder eine pauschale Haftungsübernahme noch einen Verzicht auf Rechte. Lehrkraftunterschrift als autorisierte Grafik; keine kryptografische Signatur.',45,798,505,6.6,muted,9);
  pdf.setTitle('Zertifikat - Digital. Aber verantwortlich.');pdf.setAuthor('Digital. Aber verantwortlich.');pdf.setSubject('Selbstlern-Nachweis für '+record.name);pdf.setCreator('Digital. Aber verantwortlich. '+VERSION);pdf.setCreationDate(new Date(record.issuedAt));pdf.setModificationDate(new Date(record.issuedAt));
  return pdf.save();
 }
+
+
