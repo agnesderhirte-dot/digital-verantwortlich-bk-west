@@ -29,25 +29,30 @@ export function canCertify(s){try{
  if(!s||!s.identity||!allComplete(s)||!s.result||!Array.isArray(s.checks)||!declarations.every((_,i)=>s.checks[i]===true)||s.rulesVersion!==RULES_VERSION||!Array.isArray(s.ruleChecks)||!applicableRules().every(r=>s.ruleChecks.includes(r.id)))return false;
  normalizeIdentity(s.identity.name,s.identity.group);return grade(s.result.entries).passed;
  }catch{return false;}}
+export function validateSignature(value){
+ if(!value||!['drawn','typed'].includes(value.mode))throw new Error('Bitte unterschreibe oder wähle die Namensbestätigung als Alternative.');
+ if(value.mode==='typed')return {mode:'typed',strokes:[]};
+ const lines=value.strokes;if(!Array.isArray(lines)||lines.length>100||!lines.length||lines.some(line=>!Array.isArray(line)||line.length<1)||lines.reduce((n,line)=>n+line.length,0)>5000||lines.some(line=>line.some(p=>!Array.isArray(p)||p.length!==2||p.some(v=>typeof v!=='number'||!Number.isFinite(v)||v<0||v>1)))||!lines.some(line=>line.length>1&&line.some(p=>Math.abs(p[0]-line[0][0])+Math.abs(p[1]-line[0][1])>.01)))throw new Error('Bitte zeichne deine Unterschrift oder wähle die Alternative ohne Zeichnen.');
+ return {mode:'drawn',strokes:lines.map(line=>line.map(p=>[...p]))};
+}
 export function validateRecord(record){
  if(!record||typeof record!=='object')throw new Error('Der Nachweis ist unvollständig. Bitte bestätige den Abschluss erneut.');
  const identity=normalizeIdentity(record.name,record.group);
  if(record.version!==VERSION||record.rulesVersion!==RULES_VERSION||record.ruleCount!==applicableRules().length||!Number.isInteger(record.score)||record.score<12||record.score>15||record.total!==15||typeof record.id!=='string'||!/^BKW-[0-9A-F-]{36}$/.test(record.id)||typeof record.issuedAt!=='string'||!Number.isFinite(Date.parse(record.issuedAt))||record.signedName!==identity.name)throw new Error('Der Nachweis ist ungültig. Bitte bestätige den Abschluss erneut.');
- return {...identity,score:record.score,total:15,issuedAt:new Date(record.issuedAt).toISOString(),id:record.id,version:VERSION,rulesVersion:RULES_VERSION,ruleCount:applicableRules().length,signedName:identity.name};
+ return {...identity,score:record.score,total:15,issuedAt:new Date(record.issuedAt).toISOString(),id:record.id,version:VERSION,rulesVersion:RULES_VERSION,ruleCount:applicableRules().length,signedName:identity.name,signature:validateSignature(record.signature||{mode:'typed'})};
 }
-export function createRecord(s,signedName,{now=new Date(),id=globalThis.crypto.randomUUID()}={}){
+export function createRecord(s,signedName,{now=new Date(),id=globalThis.crypto.randomUUID()}={},signature={mode:'typed'}){
  if(!canCertify(s))throw new Error('Bitte bearbeite alle Module, bestehe den Test und bestätige alle Regeln.');
  if(typeof signedName!=='string'||signedName.normalize('NFC').trim().replace(/\s+/g,' ')!==s.identity.name)throw new Error('Bitte bestätige mit genau dem Namen, den du zu Beginn angegeben hast.');
- return validateRecord({...s.identity,score:grade(s.result.entries).score,total:15,issuedAt:now.toISOString(),id:'BKW-'+id.toUpperCase(),version:VERSION,rulesVersion:RULES_VERSION,ruleCount:applicableRules().length,signedName:s.identity.name});
+ return validateRecord({...s.identity,score:grade(s.result.entries).score,total:15,issuedAt:s.result.finishedAt||now.toISOString(),id:'BKW-'+id.toUpperCase(),version:VERSION,rulesVersion:RULES_VERSION,ruleCount:applicableRules().length,signedName:s.identity.name,signature:validateSignature(signature)});
 }
 export function restore(raw){try{
  const input=JSON.parse(raw);if(!input||input.version!==VERSION||!input.identity)return emptyState();
  const s=emptyState();s.identity=normalizeIdentity(input.identity.name,input.identity.group);
  s.completed=Array.isArray(input.completed)?modules.filter(m=>input.completed.includes(m.id)).map(m=>m.id):[];
  s.checks=declarations.map((_,i)=>input.checks?.[i]===true);s.ruleChecks=Array.isArray(input.ruleChecks)?applicableRules().filter(r=>input.ruleChecks.includes(r.id)).map(r=>r.id):[];s.rulesVersion=input.rulesVersion===RULES_VERSION?RULES_VERSION:null;
- if(input.result){try{s.result=grade(input.result.entries);}catch{}}
+ if(input.result){try{s.result={...grade(input.result.entries),...(typeof input.result.finishedAt==='string'&&Number.isFinite(Date.parse(input.result.finishedAt))?{finishedAt:input.result.finishedAt}:{})};}catch{}}
  if(Array.isArray(input.exam)&&input.exam.length===15&&new Set(input.exam.map(e=>e?.id)).size===15){const exam=input.exam.map(e=>{const q=questions.find(q=>q.id===e?.id);if(!q||!Array.isArray(e.order)||e.order.length!==q.options.length||new Set(e.order).size!==q.options.length||e.order.some(i=>!Number.isInteger(i)||i<0||i>=q.options.length)||!(e.answer===null||Number.isInteger(e.answer)&&e.answer>=0&&e.answer<q.options.length))throw Error();return {id:q.id,order:[...e.order],answer:e.answer};});grade(exam.map(e=>({...e,answer:e.answer??0})));s.exam=exam;}
  if(input.certificate&&canCertify(s)){try{const record=validateRecord(input.certificate);if(record.name===s.identity.name&&record.group===s.identity.group&&record.score===s.result.score)s.certificate=record;}catch{}}
  return s;
  }catch{return emptyState();}}
-

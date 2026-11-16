@@ -37,12 +37,13 @@ export async function createCertificate(input,resources){
  text('PERSÖNLICH BESTÄTIGT',45,579,8,muted);
  const statements=['Schulung bearbeitet; alle 14 Regeln gelesen und zur Kenntnis genommen.','Rechte, Pflichten und mögliche Folgen im Einzelfall kennengelernt.','Geltende rechtmäßige Regeln einhalten und bei Vorfällen Hilfe holen.'];
  statements.forEach((s,i)=>{const y=597+i*16;page.drawLine({start:{x:45,y:H-y-5},end:{x:48,y:H-y-8},thickness:1,color:navy});page.drawLine({start:{x:48,y:H-y-8},end:{x:53,y:H-y-1},thickness:1,color:navy});text(s,60,y,8.1);});
- text('Elektronische Namensbestätigung am '+formatDate(record.issuedAt),45,652,8,muted);wrap(record.signedName,45,666,505,9,navy,12);
- page.drawLine({start:{x:45,y:H-729},end:{x:280,y:H-729},thickness:.7,color:muted});page.drawLine({start:{x:315,y:H-729},end:{x:550,y:H-729},thickness:.7,color:muted});
- text('Optional: Unterschrift Schüler/in, Datum',45,735,7,muted);text('Sichtung durch Lehrkraft, Datum (optional)',315,735,7,muted);
+ text('Persönlich bestätigt am '+formatDate(record.issuedAt),45,652,8,muted);
+ if(record.signature.mode==='drawn'){for(const stroke of record.signature.strokes){for(let i=1;i<stroke.length;i++)page.drawLine({start:{x:45+stroke[i-1][0]*220,y:H-672-stroke[i-1][1]*57},end:{x:45+stroke[i][0]*220,y:H-672-stroke[i][1]*57},thickness:1.1,color:navy});}}else wrap(record.signedName,45,685,230,9,navy,12);
+ text(record.signature.mode==='drawn'?'Schülerunterschrift':'Persönliche Namensbestätigung',45,738,7,muted);
+ if(assets.teacher){const signature=await pdf.embedPng(assets.teacher);page.drawImage(signature,{x:335,y:H-704,width:145,height:52});}
+ text('OStR Matthias Albrecht',315,708,10);text('Digitalisierungsbeauftragter',315,724,8);text(formatDate(record.issuedAt),315,738,8,muted);
  rect(45,758,505,1,line);text('Nachweis-ID: '+record.id,45,768,7.1);text('Lernfassung: '+VERSION+' | Regeln: '+record.rulesVersion,45,782,6.8,muted);
- wrap('Selbstlern-Nachweis mit selbst angegebenem Namen; keine Identitätsprüfung oder kryptografische Signatur. Die Bestätigung enthält weder eine pauschale Haftungsübernahme noch einen Verzicht auf Rechte. Keine vorweggenommene Unterschrift der Schule.',45,798,505,6.6,muted,9);
+ wrap('Selbstlern-Nachweis mit selbst angegebenem Namen; keine Identitätsprüfung oder kryptografische Signatur. Die Bestätigung enthält weder eine pauschale Haftungsübernahme noch einen Verzicht auf Rechte. Lehrkraftunterschrift als autorisierte Grafik; keine kryptografische Signatur.',45,798,505,6.6,muted,9);
  pdf.setTitle('Zertifikat - Digital. Aber verantwortlich.');pdf.setAuthor('Digital. Aber verantwortlich.');pdf.setSubject('Selbstlern-Nachweis für '+record.name);pdf.setCreator('Digital. Aber verantwortlich. '+VERSION);pdf.setCreationDate(new Date(record.issuedAt));pdf.setModificationDate(new Date(record.issuedAt));
  return pdf.save();
 }
-

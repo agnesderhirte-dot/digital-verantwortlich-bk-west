@@ -19,4 +19,3 @@ export const classRules=[
 ];
 export const normalizedClass=value=>String(value).normalize('NFC').trim().replace(/\s+/g,'').toUpperCase();
 export const applicableRules=()=>[...classRules,...commonRules];
-
