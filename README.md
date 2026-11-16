@@ -54,6 +54,11 @@ Repository importieren, Framework „Other“, Root Directory „./“, Output D
 
 ## Inhalt und Gestaltung
 
-Rechtsinhalte beziehen sich auf Deutschland und NRW, Inhaltsstand 13. Oktober 2026. Vor Anpassungen und schulischem Regelbetrieb fachlich sowie schulorganisatorisch prüfen. Betreiber- und Datenschutzangaben sind an den tatsächlichen Einsatz anzupassen.
+Rechtsinhalte beziehen sich auf Deutschland und NRW, Inhaltsstand 16. November 2026. Vor Anpassungen und schulischem Regelbetrieb fachlich sowie schulorganisatorisch prüfen. Betreiber- und Datenschutzangaben sind an den tatsächlichen Einsatz anzupassen.
 
 Das Schullogo und Bilder sind keine frei lizenzierten Projektbestandteile; die Berechtigung zur weiteren Nutzung ist gesondert zu beachten. Bibliotheks- und Schriftlizenzen liegen unter public/assets/. Für den übrigen Quellcode wird mit diesem Upload keine zusätzliche Open-Source-Lizenz erteilt.
+
+## Qualitätsprüfung und Weiterentwicklung
+
+Siehe [Prüfbericht](PRUEFBERICHT.md) und [Megaprompt](MEGAPROMPT.md). Die persönliche Namensbestätigung und leere Unterschriftsfelder im PDF sind keine kryptografische Signatur oder Identitätsprüfung. Der unabhängige Kurs ist nicht fälschungssicher. PDF-Erzeugung und Sicherheitsregressionen sind mit 18 Tests abgesichert; die echte Dateiablage auf iPad/Safari und Android ist in der Geräteabnahme zu prüfen.
+
