@@ -54,11 +54,12 @@ Repository importieren, Framework „Other“, Root Directory „./“, Output D
 
 ## Inhalt und Gestaltung
 
-Rechtsinhalte beziehen sich auf Deutschland und NRW, Inhaltsstand 16. November 2026. Vor Anpassungen und schulischem Regelbetrieb fachlich sowie schulorganisatorisch prüfen. Betreiber- und Datenschutzangaben sind an den tatsächlichen Einsatz anzupassen.
+Rechtsinhalte beziehen sich auf Deutschland und NRW, Fragenstand 17. November 2026 (VERSION 2026-11-17.1). Der Fragenpool enthält 30 Fragen, fünf pro Thema. 15 werden im Test verwendet. Änderungen, Quellen und Prüfgrenzen: [Fragenreview](FRAGEN-REVIEW.md). Alte Sitzungsstände werden bei diesem Versionswechsel verworfen, damit geänderte Antwortnummern nicht falsch ausgewertet werden.
+
+Impressum und Datenschutz stehen in public/legal-pages.js. Die Texte sind Entwürfe mit Schuldaten aus den offiziellen Schulquellen und dienstlichem Projektkontakt. Die tatsächliche Anbieter-/Hostingzuordnung, Verträge, Rechtsgrundlagen und Log-Löschfristen sind vor verbindlichem Einsatz zu bestätigen: [offene rechtliche Prüfpunkte](RECHTLICHE-PRUEFPUNKTE.md). Eine schulische Freigabe wird nicht behauptet.
 
 Das Schullogo und Bilder sind keine frei lizenzierten Projektbestandteile; die Berechtigung zur weiteren Nutzung ist gesondert zu beachten. Bibliotheks- und Schriftlizenzen liegen unter public/assets/. Für den übrigen Quellcode wird mit diesem Upload keine zusätzliche Open-Source-Lizenz erteilt.
 
 ## Qualitätsprüfung und Weiterentwicklung
 
-Siehe [Prüfbericht](PRUEFBERICHT.md) und [Megaprompt](MEGAPROMPT.md). Die persönliche Namensbestätigung und leere Unterschriftsfelder im PDF sind keine kryptografische Signatur oder Identitätsprüfung. Der unabhängige Kurs ist nicht fälschungssicher. PDF-Erzeugung und Sicherheitsregressionen sind mit 18 Tests abgesichert; die echte Dateiablage auf iPad/Safari und Android ist in der Geräteabnahme zu prüfen.
-
+Siehe [Prüfbericht](PRUEFBERICHT.md), [Audit vom 17.11.2026](AUDIT-2026-11-17.md) und [Megaprompt](MEGAPROMPT.md). Die persönliche Namensbestätigung, optional gezeichnete Schülerunterschrift und eingebundene Lehrkraftunterschrift sind keine kryptografische Signatur oder Identitätsprüfung. Der unabhängige Kurs erstellt einen Selbstlern-Nachweis und ist nicht fälschungssicher. PDF-Erzeugung, Sicherheitsregressionen, Fragenverteilung und Rechtshinweise sind mit 24 Tests geprüft; die echte Dateiablage auf iPad/Safari und Android ist weiterhin in der Geräteabnahme zu prüfen.
