@@ -1,5 +1,5 @@
 import {examQuestions} from './question-bank.js';
-export const VERSION='2026-11-16.2';
+export const VERSION='2026-11-17.1';
 const law=(label,url)=>({label,url});
 const stgb=(n,label)=>law(`§ ${n} StGB · ${label}`,`https://www.gesetze-im-internet.de/stgb/__${n}.html`);
 const bgb=(n,label)=>law(`§ ${n} BGB · ${label}`,`https://www.gesetze-im-internet.de/bgb/__${n}.html`);
