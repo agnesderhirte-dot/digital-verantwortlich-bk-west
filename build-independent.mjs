@@ -2,7 +2,7 @@ import fs from 'node:fs/promises';
 const source='public/';
 const read=p=>fs.readFile(source+p,'utf8');
 let html=await read('index.html');const css=await read('style.css');
-const files=['question-bank.js','content.js','rules.js','core.js','pdf-resources.js','certificate.js','signature.js','legal-pages.js','app.js'];
+const files=['question-bank.js','content.js','rules.js','core.js','pdf-resources.js','certificate.js','signature.js','legal-pages.js','counter.js','app.js'];
 const scripts=(await Promise.all(files.map(read))).map(s=>s.replace(/^import .*?;\r?\n/gm,'').replace(/^export /gm,'')).join('\n');
 const libraries=(await Promise.all(['assets/pdf-lib.min.js','assets/fontkit.min.js'].map(read))).join('\n');
 html=html.replace('<link rel="stylesheet" href="style.css">',`<style>${css}</style>`).replace(/<script[^>]*src="[^"]+"[^>]*><\/script>/g,'');

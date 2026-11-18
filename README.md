@@ -12,11 +12,13 @@ Aktuelle Website: https://digital-verantwortlich-bk-west.vercel.app/
 - Alle 14 Regeln für alle Klassen und drei persönliche Erklärungen bestätigen.
 - Persönliches PDF-Zertifikat mit Schullogo herunterladen und Matthias Albrecht vorzeigen.
 
-Name, Klasse und Fortschritt bleiben im Sitzungsspeicher des Browsers. Es gibt keine zentrale Klassenübersicht und keinen Lehrerzugang. Das Zertifikat wird auf dem Gerät erstellt. Es erfolgt kein automatischer Versand.
+Name, Klasse und Fortschritt bleiben im Sitzungsspeicher des Browsers. Es gibt keine zentrale Klassenübersicht und keinen Lehrerzugang. Das Zertifikat wird auf dem Gerät erstellt. Es erfolgt kein automatischer Versand des Zertifikats.
+
+Die Online-Seite zeigt seit 18.11.2026 einen kleinen gemeinsamen Zähler: abgeschlossene Testversuche und Bestehensquote, einschließlich Wiederholungen. Die zentrale Zählfunktion erhält nur Inhaltsversion, Zufallskennung pro Abgabe und ein Bestehenskennzeichen. Keine Namen, Klassen, Punktzahlen, Antworten oder Unterschriften. Details: [Zähler](COUNTER.md). Die Offline-Datei bleibt ohne Zähler nutzbar.
 
 ## Lokal entwickeln
 
-Node.js 22 oder neuer installieren. Es werden keine npm-Abhängigkeiten benötigt.
+Node.js 22 oder neuer installieren. Für die Online-Zählfunktion ist der offizielle Server-Datenbanktreiber @neondatabase/serverless 1.2.1 als einzige npm-Abhängigkeit hinzugekommen. Er wird nicht im Browser oder in der Offline-Datei geladen. Die bisherige statische Lernseite benötigt ihn weiterhin nicht.
 
 ```sh
 git clone https://github.com/agnesderhirte-dot/digital-verantwortlich-bk-west.git
@@ -50,7 +52,7 @@ Die eigenständige Datei entsteht unter output/Digital-verantwortlich.html. Sie 
 
 ## Vercel
 
-Repository importieren, Framework „Other“, Root Directory „./“, Output Directory „public“. Kein Build oder Installationsschritt und keine Umgebungsvariablen erforderlich. vercel.json enthält die Auslieferungskonfiguration. Die bestehende Online-Seite wird durch den GitHub-Upload allein nicht verändert oder automatisch mit diesem Repository verbunden.
+Repository importieren, Framework „Other“, Root Directory „./“, Output Directory „public“. Installation: pnpm install --frozen-lockfile --ignore-scripts. Kein zusätzlicher Buildschritt. Die Online-Zählfunktion benötigt COUNTER_DATABASE_URL ausschließlich als geschützte Servervariable; niemals in public/ oder im Repository ablegen. vercel.json enthält die Auslieferungs- und Funktionskonfiguration. Die bestehende Online-Seite wird durch einen GitHub-Upload allein nicht automatisch mit diesem Repository verbunden.
 
 ## Inhalt und Gestaltung
 
@@ -62,4 +64,4 @@ Das Schullogo und Bilder sind keine frei lizenzierten Projektbestandteile; die B
 
 ## Qualitätsprüfung und Weiterentwicklung
 
-Siehe [Prüfbericht](PRUEFBERICHT.md), [Audit vom 17.11.2026](AUDIT-2026-11-17.md) und [Megaprompt](MEGAPROMPT.md). Die persönliche Namensbestätigung, optional gezeichnete Schülerunterschrift und eingebundene Lehrkraftunterschrift sind keine kryptografische Signatur oder Identitätsprüfung. Der unabhängige Kurs erstellt einen Selbstlern-Nachweis und ist nicht fälschungssicher. PDF-Erzeugung, Sicherheitsregressionen, Fragenverteilung und Rechtshinweise sind mit 24 Tests geprüft; die echte Dateiablage auf iPad/Safari und Android ist weiterhin in der Geräteabnahme zu prüfen.
+Siehe [Prüfbericht](PRUEFBERICHT.md), [Audit vom 17.11.2026](AUDIT-2026-11-17.md) und [Megaprompt](MEGAPROMPT.md). Die persönliche Namensbestätigung, optional gezeichnete Schülerunterschrift und eingebundene Lehrkraftunterschrift sind keine kryptografische Signatur oder Identitätsprüfung. Der unabhängige Kurs erstellt einen Selbstlern-Nachweis und ist nicht fälschungssicher. PDF-Erzeugung, Sicherheitsregressionen, Fragenverteilung, Rechtshinweise und Zählfunktion sind mit 32 Tests geprüft; die echte Dateiablage auf iPad/Safari und Android ist weiterhin in der Geräteabnahme zu prüfen.

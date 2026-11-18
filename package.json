@@ -10,5 +10,8 @@
     "start": "node server.mjs",
     "test": "node --test tests/*.test.mjs",
     "build:html": "node build-independent.mjs"
+  },
+  "dependencies": {
+    "@neondatabase/serverless": "1.2.1"
   }
 }
