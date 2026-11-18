@@ -1,0 +1,22 @@
+name: Einmalige Bereinigung der Commitadressen
+on:
+  push:
+    branches: [main]
+    paths:
+      - .github/workflows/private-email-cleanup.yml
+permissions:
+  contents: write
+jobs:
+  clean-history:
+    if: github.repository == 'agnesderhirte-dot/digital-verantwortlich-bk-west'
+    runs-on: ubuntu-latest
+    timeout-minutes: 5
+    steps:
+      - uses: actions/checkout@11bd71901bbe5b1630ceea73d27597364c9af683
+        with:
+          fetch-depth: 0
+          persist-credentials: false
+      - name: Commitmetadaten bereinigen und Dateibäume unverändert lassen
+        run: node scripts/anonymize-history.mjs --push
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
