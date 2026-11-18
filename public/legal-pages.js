@@ -1,7 +1,7 @@
 // Entwurf für den schulischen Einsatz. Offene Betreiber-/Hostingfragen: RECHTLICHE-PRUEFPUNKTE.md.
 export const legalPages={
 impressum:['Impressum','Anbieter und Kontakt.',`
-<p class="notice"><strong>Entwurf zur schulischen Prüfung · Stand 17.11.2026.</strong> Die folgenden Schuldaten wurden der offiziellen Schulwebsite entnommen. Die Zuordnung dieser Lernseite zum schulischen Angebot und die Verantwortlichkeit für das Hosting sind vor dem Regelbetrieb durch die Schulleitung zu bestätigen. Eine solche Freigabe wird hier nicht behauptet.</p>
+<p class="notice"><strong>Entwurf zur schulischen Prüfung · Stand 18.11.2026.</strong> Die folgenden Schuldaten wurden der offiziellen Schulwebsite entnommen. Die Zuordnung dieser Lernseite zum schulischen Angebot und die Verantwortlichkeit für das Hosting sind vor dem Regelbetrieb durch die Schulleitung zu bestätigen. Eine solche Freigabe wird hier nicht behauptet.</p>
 <h2>Vorgesehener schulischer Anbieter</h2>
 <p><strong>Berufskolleg West der Stadt Essen</strong><br>Am Westbahnhof 3–5<br>45144 Essen</p>
 <p>Schulleitung: Joachim Ruppert, OStD<br>Telefon: <a href="tel:+492018879330">0201 / 8879-330</a><br>E-Mail: <a href="mailto:berufskolleg-west@schule.essen.de">berufskolleg-west@schule.essen.de</a></p>
@@ -15,7 +15,7 @@ impressum:['Impressum','Anbieter und Kontakt.',`
 <h2>Quellen und Datenschutz</h2>
 <p>Kontaktdaten: <a href="https://www.berufskolleg-west.de/impressum/" target="_blank" rel="noopener noreferrer">offizielles Schulimpressum</a>, abgerufen am 17.11.2026. Hinweise zur Datenverarbeitung auf dieser Lernseite stehen unter <a href="#datenschutz">Datenschutz</a>.</p>`],
 datenschutz:['Datenschutz','Welche Daten wo bleiben.',`
-<p class="notice"><strong>Entwurf zur schulischen Prüfung · Stand 17.11.2026.</strong> Die technischen Angaben beschreiben diese Anwendung. Vor dem verbindlichen schulischen Einsatz müssen Verantwortlichkeit, Rechtsgrundlage, Hostingvertrag, Log-Löschfristen und gegebenenfalls Drittlandübermittlungen abschließend geklärt werden. Die Hinweise behaupten keine bereits erfolgte Datenschutzfreigabe.</p>
+<p class="notice"><strong>Entwurf zur schulischen Prüfung · Stand 18.11.2026.</strong> Die technischen Angaben beschreiben diese Anwendung. Vor dem verbindlichen schulischen Einsatz müssen Verantwortlichkeit, Rechtsgrundlage, Hostingvertrag, Log-Löschfristen und gegebenenfalls Drittlandübermittlungen abschließend geklärt werden. Die Hinweise behaupten keine bereits erfolgte Datenschutzfreigabe.</p>
 <h2>1. Verantwortlichkeit und Kontakt</h2>
 <p>Für den vorgesehenen schulischen Einsatz: <strong>Berufskolleg West der Stadt Essen</strong>, vertreten durch die Schulleitung, Joachim Ruppert, Am Westbahnhof 3–5, 45144 Essen; Telefon <a href="tel:+492018879330">0201 / 8879-330</a>; <a href="mailto:berufskolleg-west@schule.essen.de">berufskolleg-west@schule.essen.de</a>. Die tatsächliche Betreiber- und Hostingzuordnung dieser Lernseite ist noch schulisch zu bestätigen.</p>
 <p>Projektkontakt: OStR Matthias Albrecht, Digitalisierungsbeauftragter, <a href="mailto:matthias.albrecht@berufskolleg-west.de">matthias.albrecht@berufskolleg-west.de</a>.</p>

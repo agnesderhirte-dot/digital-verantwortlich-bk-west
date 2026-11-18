@@ -19,7 +19,9 @@ Quelle: [Datenschutzerklärung der Schule](https://www.berufskolleg-west.de/date
 
 ## Technisch überprüfte Aussagen
 
-Der Anwendungscode nutzt sessionStorage und erzeugt PDF-Dateien lokal. Kein Lehrer-Login, keine zentrale Schülerdatenbank, keine automatische Teams-Übermittlung und keine Analyse-Integration im eigenen Code. Noch nicht bestätigte Unterschriftsstriche liegen nur im Arbeitsspeicher. Ein erzeugter Nachweis einschließlich Unterschrift kann im Sitzungsspeicher stehen. PDF-Downloads und Browser-/Gerätesynchronisation unterliegen zusätzlich den Einstellungen des Endgeräts.
+Der Anwendungscode nutzt sessionStorage und erzeugt PDF-Dateien lokal. Kein Lehrer-Login, keine zentrale Schülerdatenbank und keine automatische Teams-Übermittlung. Noch nicht bestätigte Unterschriftsstriche liegen nur im Arbeitsspeicher. Ein erzeugter Nachweis einschließlich Unterschrift kann im Sitzungsspeicher stehen. PDF-Downloads und Browser-/Gerätesynchronisation unterliegen zusätzlich den Einstellungen des Endgeräts.
+
+Am 18.11.2026 hat der Auftraggeber zusätzlich einen kleinen öffentlichen Testzähler ausdrücklich beauftragt: sämtliche abgeschlossenen Testversuche einschließlich Wiederholungen und deren Bestehensquote. Dafür gibt es eine zentrale Vercel-Funktion und einen getrennten Neon-Datenbankspeicher in der gewählten Region Frankfurt. Übertragen werden nur Inhaltsversion, zufällige Abgabekennung und bestanden/nicht bestanden. Gespeichert werden Summen, Zufallskennungen zum Doppelzählungsschutz und ein globaler Minuten-Zähler für die Begrenzung von Schreibanfragen. Keine Namen, Klassen, Punktzahlen, Antworten oder Unterschriften; keine Speicherung von IP-Adressen im Anwendungsschema. Abschnitt 6a der Datenschutzhinweise und COUNTER.md beschreiben die zusätzliche Verarbeitung und ihre Grenzen. Rechtsgrundlage, Vertrags-/Protokollfragen auch für Neon und die Aufbewahrung der zufälligen Kennungen sind in die schulische Prüfung einzubeziehen. Die bisherige Architekturentscheidung „vollständig ohne Backend“ wurde durch diesen konkreten Zusatzauftrag geändert; die zentrale Schülerverwaltung bleibt ausgeschlossen.
 
 ## Grenzen
 
